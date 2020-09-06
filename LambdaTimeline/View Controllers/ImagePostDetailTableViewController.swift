@@ -10,6 +10,8 @@ import UIKit
 
 class ImagePostDetailTableViewController: UITableViewController {
     
+    //MARK: - Properties and IBOutlets -
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var authorLabel: UILabel!
@@ -19,6 +21,8 @@ class ImagePostDetailTableViewController: UITableViewController {
     var post: Post!
     var postController: PostController!
     var imageData: Data?
+    
+    //MARK: - Methods and IBActions -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -36,8 +40,6 @@ class ImagePostDetailTableViewController: UITableViewController {
         titleLabel.text = post.title
         authorLabel.text = post.author
     }
-    
-    // MARK: - Table view data source
     
     @IBAction func createComment(_ sender: UIButton) {
         
@@ -69,12 +71,14 @@ class ImagePostDetailTableViewController: UITableViewController {
         present(alert, animated: true, completion: nil)
     }
     
+    // MARK: - Table view data source
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return (post?.comments.count ?? 0) - 1
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CommentCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "TextCommentCell", for: indexPath)
         
         let comment = post?.comments[indexPath.row + 1]
         
