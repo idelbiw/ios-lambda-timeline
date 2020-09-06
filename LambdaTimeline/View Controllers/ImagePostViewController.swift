@@ -21,6 +21,7 @@ class ImagePostViewController: ShiftableViewController {
     
     //MARK: - Properties -
     
+    let filterController = FilterController()
     var postController: PostController!
     var post: Post?
     var imageData: Data?
