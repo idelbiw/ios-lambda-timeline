@@ -295,7 +295,41 @@ class ImagePostViewController: ShiftableViewController {
     }
     
     @IBAction func sliderOneAdjusted(_ sender: UISlider) {
+        switch selectedFilter {
         
+        ///Bokeh blur filter implementation
+        case .bokeh:
+            guard let image = imageView.image else { return }
+            let radius = sliderOne.value
+            let ringAmount = sliderTwo.value
+            let ringSize = sliderThree.value
+            let softness = sliderFour.value
+            let filteredImage = filterController.applyBokehFilter(image: image, radius: radius, ringAmount: ringAmount, ringSize: ringSize, softness: softness)
+            imageView.image = filteredImage
+        
+        ///Hue filter implementation
+        case .hue:
+            guard let image = imageView.image else { return }
+            let angle = sliderOne.value
+            let filteredImage = filterController.applyHueFilter(image: image, angle: angle)
+            imageView.image = filteredImage
+            
+        ///Vignette filter implementation
+        case .vignette:
+            guard let image = imageView.image else { return }
+            let intensity = sliderOne.value
+            let radius = sliderTwo.value
+            
+            
+        ///X-Ray filter implementation
+        case .xray:
+            break
+            
+        ///Sepia Tone filter implementation
+        case .sepia:
+            guard let image = imageView.image else { return }
+            
+        }
     }
     
     @IBAction func sliderTwoAdjusted(_ sender: UISlider) {
