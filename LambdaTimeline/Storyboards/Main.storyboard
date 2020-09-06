@@ -107,11 +107,11 @@
             <objects>
                 <viewController id="1Aw-4e-BW2" customClass="ImagePostViewController" customModule="LambdaTimeline" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="CkP-uJ-8jW">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="1000"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9qd-If-ddw">
-                                <rect key="frame" x="8" y="88" width="398" height="774"/>
+                                <rect key="frame" x="8" y="88" width="398" height="878"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="PkI-rS-ua9">
                                         <rect key="frame" x="0.0" y="0.0" width="398" height="417"/>
@@ -157,22 +157,67 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="EBT-49-BF0">
-                                        <rect key="frame" x="15" y="548.5" width="368" height="170"/>
+                                        <rect key="frame" x="15" y="548.5" width="368" height="297.5"/>
                                         <subviews>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nlT-IA-Y3J">
+                                                <rect key="frame" x="0.0" y="0.0" width="368" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Zxw-cM-JgA">
-                                                <rect key="frame" x="-2" y="0.0" width="372" height="31"/>
+                                                <rect key="frame" x="-2" y="25.5" width="372" height="31"/>
+                                                <connections>
+                                                    <action selector="sliderOneAdjusted:" destination="1Aw-4e-BW2" eventType="valueChanged" id="Wnp-1b-65A"/>
+                                                </connections>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OlA-Hh-Wg6">
+                                                <rect key="frame" x="0.0" y="60.5" width="368" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="U12-cJ-WuV">
-                                                <rect key="frame" x="-2" y="35" width="372" height="31"/>
+                                                <rect key="frame" x="-2" y="86" width="372" height="31"/>
+                                                <connections>
+                                                    <action selector="sliderTwoAdjusted:" destination="1Aw-4e-BW2" eventType="valueChanged" id="DUL-ek-2PT"/>
+                                                </connections>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hZM-PI-rtU">
+                                                <rect key="frame" x="0.0" y="121" width="368" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="z3c-78-9zn">
-                                                <rect key="frame" x="-2" y="70" width="372" height="31"/>
+                                                <rect key="frame" x="-2" y="146.5" width="372" height="31"/>
+                                                <connections>
+                                                    <action selector="sliderThreeAdjusted:" destination="1Aw-4e-BW2" eventType="valueChanged" id="Lc0-Ql-DMQ"/>
+                                                </connections>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="35l-eN-U0q">
+                                                <rect key="frame" x="0.0" y="181.5" width="368" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="Pb2-AO-LeL">
-                                                <rect key="frame" x="-2" y="105" width="372" height="31"/>
+                                                <rect key="frame" x="-2" y="207" width="372" height="31"/>
+                                                <connections>
+                                                    <action selector="sliderFourAdjusted:" destination="1Aw-4e-BW2" eventType="valueChanged" id="cAB-ji-1lb"/>
+                                                </connections>
                                             </slider>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rm5-w1-DGK">
+                                                <rect key="frame" x="0.0" y="242" width="368" height="20.5"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="XQy-Wd-8HY">
-                                                <rect key="frame" x="-2" y="140" width="372" height="31"/>
+                                                <rect key="frame" x="-2" y="267.5" width="372" height="31"/>
+                                                <connections>
+                                                    <action selector="sliderFiveAdjusted:" destination="1Aw-4e-BW2" eventType="valueChanged" id="vkn-1x-F0y"/>
+                                                </connections>
                                             </slider>
                                         </subviews>
                                     </stackView>
@@ -183,8 +228,11 @@
                                             <segment title="Hue"/>
                                             <segment title="Vignette"/>
                                             <segment title="XRay"/>
-                                            <segment title="Vortex"/>
+                                            <segment title="Sepia"/>
                                         </segments>
+                                        <connections>
+                                            <action selector="filterChangedSegmentedControl:" destination="1Aw-4e-BW2" eventType="valueChanged" id="hLy-Xm-Jct"/>
+                                        </connections>
                                     </segmentedControl>
                                 </subviews>
                                 <constraints>
@@ -222,17 +270,28 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <size key="freeformSize" width="414" height="1000"/>
                     <connections>
                         <outlet property="chooseImageButton" destination="VxD-cu-jHT" id="KVs-no-MbU"/>
                         <outlet property="imageHeightConstraint" destination="MHD-wr-Gq9" id="HyG-8g-Ck1"/>
                         <outlet property="imageView" destination="4eK-5F-H5h" id="e7m-c5-Xhz"/>
+                        <outlet property="labelFive" destination="rm5-w1-DGK" id="tqo-6w-haQ"/>
+                        <outlet property="labelFour" destination="35l-eN-U0q" id="Mgi-VV-GWE"/>
+                        <outlet property="labelOne" destination="nlT-IA-Y3J" id="feT-jB-7Vc"/>
+                        <outlet property="labelThree" destination="hZM-PI-rtU" id="Hxw-yK-lOf"/>
+                        <outlet property="labelTwo" destination="OlA-Hh-Wg6" id="zSd-uN-Tdt"/>
                         <outlet property="postButton" destination="hsH-Uv-tug" id="ZBn-KE-cpU"/>
+                        <outlet property="sliderFive" destination="XQy-Wd-8HY" id="xDm-b0-97u"/>
+                        <outlet property="sliderFour" destination="Pb2-AO-LeL" id="DQ3-oP-Yx6"/>
+                        <outlet property="sliderOne" destination="Zxw-cM-JgA" id="paR-Ql-PeL"/>
+                        <outlet property="sliderThree" destination="z3c-78-9zn" id="1G9-bf-9LA"/>
+                        <outlet property="sliderTwo" destination="U12-cJ-WuV" id="exA-Nl-cg7"/>
                         <outlet property="titleTextField" destination="Op6-OA-6Ou" id="JEe-cj-4mv"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XXa-A2-VJT" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3228" y="-587"/>
+            <point key="canvasLocation" x="3228" y="-668"/>
         </scene>
         <!--Timeline-->
         <scene sceneID="gdW-Je-ais">
