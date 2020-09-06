@@ -34,20 +34,20 @@ class ImagePostViewController: ShiftableViewController {
     @IBOutlet weak var chooseImageButton: UIButton!
     @IBOutlet weak var imageHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var postButton: UIBarButtonItem!
+    @IBOutlet weak var xraySwitch: UISwitch!
     
     //Labels - These will display the attribute for the filter that the use will be adjusting
     @IBOutlet weak var labelOne: UILabel!
     @IBOutlet weak var labelTwo: UILabel!
     @IBOutlet weak var labelThree: UILabel!
     @IBOutlet weak var labelFour: UILabel!
-    @IBOutlet weak var labelFive: UILabel!
     
     //Sliders - These are what the user will be interacting with to apply filters
     @IBOutlet weak var sliderOne   :  UISlider!
     @IBOutlet weak var sliderTwo   :  UISlider!
     @IBOutlet weak var sliderThree :  UISlider!
     @IBOutlet weak var sliderFour  :  UISlider!
-    @IBOutlet weak var sliderFive  :  UISlider!
+    
     
     //MARK: - Methods -
     
@@ -85,13 +85,13 @@ class ImagePostViewController: ShiftableViewController {
             labelTwo.isHidden    = false
             labelThree.isHidden  = false
             labelFour.isHidden   = false
-            labelFive.isHidden   = true
             
             sliderOne.isHidden   = false
             sliderTwo.isHidden   = false
             sliderThree.isHidden = false
             sliderFour.isHidden  = false
-            sliderFive.isHidden  = true
+            
+            xraySwitch.isHidden = true
             
         ///Case for the Hue filter
         case .hue:
@@ -107,13 +107,13 @@ class ImagePostViewController: ShiftableViewController {
             labelTwo.isHidden = true
             labelThree.isHidden = true
             labelFour.isHidden = true
-            labelFive.isHidden = true
             
             sliderOne.isHidden  = false
             sliderTwo.isHidden = true
             sliderThree.isHidden = true
             sliderFour.isHidden = true
-            sliderFive.isHidden = true
+            
+            xraySwitch.isHidden = true
             
         ///Case for the Vignette filter
         case .vignette:
@@ -132,32 +132,32 @@ class ImagePostViewController: ShiftableViewController {
             labelTwo.isHidden = false
             labelThree.isHidden = true
             labelFour.isHidden = true
-            labelFive.isHidden = true
             
             sliderOne.isHidden  = false
             sliderTwo.isHidden = false
             sliderThree.isHidden = true
             sliderFour.isHidden = true
-            sliderFive.isHidden = true
+            
+            xraySwitch.isHidden = true
             
         ///Case for the X-Ray filter
         case .xray:
             
             //setting up labels and sliders based on selected filter
-            labelOne.text = "No adjustment needed for this one 🙂"
+            labelOne.text = "X-Ray"
             
             //hiding/revealing views based on selected filter
             labelOne.isHidden = false
             labelTwo.isHidden = true
             labelThree.isHidden = true
             labelFour.isHidden = true
-            labelFive.isHidden = true
             
             sliderOne.isHidden  = true
             sliderTwo.isHidden = true
             sliderThree.isHidden = true
             sliderFour.isHidden = true
-            sliderFive.isHidden = true
+            
+            xraySwitch.isHidden = false
             
         ///Case for the Vortex Distortion filter
         case .sepia:
@@ -173,13 +173,13 @@ class ImagePostViewController: ShiftableViewController {
             labelTwo.isHidden = true
             labelThree.isHidden = true
             labelFour.isHidden = true
-            labelFive.isHidden = true
             
             sliderOne.isHidden  = false
             sliderTwo.isHidden = true
             sliderThree.isHidden = true
             sliderFour.isHidden = true
-            sliderFive.isHidden = true
+            
+            xraySwitch.isHidden = true
         }
     }
     
@@ -221,6 +221,48 @@ class ImagePostViewController: ShiftableViewController {
             selectedFilter = .sepia
         }
         
+    }
+    
+    func applyFilters() {
+        switch selectedFilter {
+        
+        ///Bokeh blur filter implementation
+        case .bokeh:
+            guard let image = imageView.image else { return }
+            let radius = sliderOne.value
+            let ringAmount = sliderTwo.value
+            let ringSize = sliderThree.value
+            let softness = sliderFour.value
+            let filteredImage = filterController.applyBokehFilter(image: image, radius: radius, ringAmount: ringAmount, ringSize: ringSize, softness: softness)
+            imageView.image = filteredImage
+        
+        ///Hue filter implementation
+        case .hue:
+            guard let image = imageView.image else { return }
+            let angle = sliderOne.value
+            let filteredImage = filterController.applyHueFilter(image: image, angle: angle)
+            imageView.image = filteredImage
+            
+        ///Vignette filter implementation
+        case .vignette:
+            guard let image = imageView.image else { return }
+            let intensity = sliderOne.value
+            let radius = sliderTwo.value
+            let filteredImage = filterController.applyVignetteFilter(image: image, intensity: intensity, radius: radius)
+            imageView.image = filteredImage
+            
+        ///X-Ray filter implementation
+        case .xray:
+            break
+            
+        ///Sepia Tone filter implementation
+        case .sepia:
+            guard let image = imageView.image else { return }
+            let intensity = sliderOne.value
+            let filteredImage = filterController.applySepiaFilter(image: image, intensity: intensity)
+            imageView.image = filteredImage
+            
+        }
     }
     
     //MARK: - IBActions -
@@ -294,58 +336,37 @@ class ImagePostViewController: ShiftableViewController {
         
     }
     
-    @IBAction func sliderOneAdjusted(_ sender: UISlider) {
-        switch selectedFilter {
+    @IBAction func xRaySwitch(_ sender: UISwitch) {
         
-        ///Bokeh blur filter implementation
-        case .bokeh:
-            guard let image = imageView.image else { return }
-            let radius = sliderOne.value
-            let ringAmount = sliderTwo.value
-            let ringSize = sliderThree.value
-            let softness = sliderFour.value
-            let filteredImage = filterController.applyBokehFilter(image: image, radius: radius, ringAmount: ringAmount, ringSize: ringSize, softness: softness)
-            imageView.image = filteredImage
+        guard let image = imageView.image else {
+            sender.isOn.toggle()
+            return
+        }
         
-        ///Hue filter implementation
-        case .hue:
-            guard let image = imageView.image else { return }
-            let angle = sliderOne.value
-            let filteredImage = filterController.applyHueFilter(image: image, angle: angle)
-            imageView.image = filteredImage
-            
-        ///Vignette filter implementation
-        case .vignette:
-            guard let image = imageView.image else { return }
-            let intensity = sliderOne.value
-            let radius = sliderTwo.value
-            
-            
-        ///X-Ray filter implementation
-        case .xray:
-            break
-            
-        ///Sepia Tone filter implementation
-        case .sepia:
-            guard let image = imageView.image else { return }
-            
+        if sender.isOn {
+            imageView.image = filterController.applyXRayFilter(image: image)
+            sender.isEnabled = false
         }
     }
     
+    @IBAction func sliderOneAdjusted(_ sender: UISlider) {
+        applyFilters()
+    }
+    
     @IBAction func sliderTwoAdjusted(_ sender: UISlider) {
-        
+        applyFilters()
     }
     
     @IBAction func sliderThreeAdjusted(_ sender: UISlider) {
-        
+        applyFilters()
     }
     
     @IBAction func sliderFourAdjusted(_ sender: UISlider) {
-        
+        applyFilters()
     }
     
     @IBAction func sliderFiveAdjusted(_ sender: UISlider) {
-        
+        applyFilters()
     }
     
 }
