@@ -33,4 +33,5 @@ class PostController {
         post.comments.append(comment)
 
     }
+    
 }

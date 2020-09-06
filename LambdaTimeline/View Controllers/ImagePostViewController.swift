@@ -34,11 +34,13 @@ class ImagePostViewController: ShiftableViewController {
             return
         }
         
-        let imagePicker = UIImagePickerController()
-        imagePicker.delegate = self
-        imagePicker.sourceType = .photoLibrary
+        DispatchQueue.main.async { 
+            let imagePicker = UIImagePickerController()
+            imagePicker.delegate = self
+            imagePicker.sourceType = .photoLibrary
+            self.present(imagePicker, animated: true, completion: nil)
+        }
         
-        present(imagePicker, animated: true, completion: nil)
     }
     
     @IBAction func createPost(_ sender: Any) {
@@ -50,7 +52,7 @@ class ImagePostViewController: ShiftableViewController {
                 presentInformationalAlertController(title: "Uh-oh", message: "Make sure that you add a photo and a caption before posting.")
                 return
         }
-
+        
         postController.createImagePost(with: title, image: image, ratio: image.ratio)
         
         navigationController?.popViewController(animated: true)
@@ -101,7 +103,7 @@ class ImagePostViewController: ShiftableViewController {
 extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
     
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-
+        
         chooseImageButton.setTitle("", for: [])
         
         picker.dismiss(animated: true, completion: nil)
