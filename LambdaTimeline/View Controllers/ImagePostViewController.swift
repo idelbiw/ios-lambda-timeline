@@ -11,6 +11,8 @@ import Photos
 
 class ImagePostViewController: ShiftableViewController {
     
+    //MARK: - Properties and IBOutlets -
+    
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var titleTextField: UITextField!
     @IBOutlet weak var chooseImageButton: UIButton!
@@ -20,6 +22,8 @@ class ImagePostViewController: ShiftableViewController {
     var postController: PostController!
     var post: Post?
     var imageData: Data?
+    
+    //MARK: - Methods and IBActions -
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -41,6 +45,13 @@ class ImagePostViewController: ShiftableViewController {
             self.present(imagePicker, animated: true, completion: nil)
         }
         
+    }
+    
+    private func setImageViewHeight(with aspectRatio: CGFloat) {
+        
+        imageHeightConstraint.constant = imageView.frame.size.width * aspectRatio
+        
+        view.layoutSubviews()
     }
     
     @IBAction func createPost(_ sender: Any) {
@@ -92,12 +103,6 @@ class ImagePostViewController: ShiftableViewController {
         
     }
     
-    func setImageViewHeight(with aspectRatio: CGFloat) {
-        
-        imageHeightConstraint.constant = imageView.frame.size.width * aspectRatio
-        
-        view.layoutSubviews()
-    }
 }
 
 extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
